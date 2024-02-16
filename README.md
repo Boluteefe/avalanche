@@ -2,21 +2,21 @@
 
 ## Contract Overview
 
-This Contract is a simple secret contract that allows to you to set anyone to set secret and get it on the blockchain. It can also show the address of the owner of the contract who deployed it.
+This Contract is a simple secret contract that allows people make a wish and get it on the blockchain. It can also show the address of the whoever made it. People can help fulfil the last person's wish if they can, and then make theirs.
 
 ## Contract Details
 
-### setSecret(string memory _secret)
+### checkWisher()
 
-Allows the user set any secret message
+This function returns th address of whoever made the last wish
 
-### showSecret()
+### makeNewWish(string memory _secret)
 
-A function that returns the last updated secret message.
+Allows the user set any secret wish
 
-### showOwner()
+### showWish()
 
-This function returns th eaddress of the owner of the contract
+A function that returns the last updated wish.
 
 ## Frontend Integration
 
