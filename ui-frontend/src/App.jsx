@@ -4,15 +4,15 @@ import WalletContext from './context/WalletContext';
 
 function App() {
   const { account, connectWallet, contract } = useContext(WalletContext);
-  const [secret, setSecret] = useState('');
+  const [wish, setWish] = useState('');
   const [refetch, setRefetch] = useState(true);
   const [loading, setLoading] = useState(false);
-  const [owner, setOwner] = useState('');
+  const [wisher, setWisher] = useState('');
 
   useEffect(() => {
     if (contract && refetch) {
-      contract.showSecret().then((data) => {
-        setSecret(data);
+      contract.showWish().then((data) => {
+        setWish(data);
         setRefetch(false);
       });
     }
@@ -21,44 +21,44 @@ function App() {
   const handleSubmit = async(e) => {
     e.preventDefault();
     setLoading(true);
-    const secretValue = e.target.secret.value;
-    e.target.secret.value = "";
-    const set = await contract.setSecret(secretValue);
+    const newWish = e.target.wish.value;
+    e.target.wish.value = "";
+    const set = await contract.makeNewWish(newWish);
     await set.wait();
     setLoading(false);
     setRefetch(true);
   };
 
-  const showOwner = async () => {
-    const ownerAddress = await contract?.showOwner();
-    console.log(ownerAddress);
-    setOwner(ownerAddress);
+  const checkWisher = async () => {
+    const wisherAddress = await contract?.checkWisher();
+    console.log(wisherAddress);
+    setWisher(wisherAddress);
   };
 
   return (
     <>
       {account ? (
         <>
-          <p>Current Secret: {secret}</p>
+          <p>Current wish: {wish}</p>
 
           <form onSubmit={handleSubmit} style={{display: "flex", flexDirection: "column", gap: "20px"}}>
             <div style={{display: "flex", gap: "10px", justifyContent: "center"}}>
-              <label htmlFor="secret">Enter secret:</label>
+              <label htmlFor="wish">Enter wish:</label>
               <input
                 type="text"
-                name="secret"
-                id="secret"
+                name="wish"
+                id="wish"
                 style={{padding: "5px"}}
               />
             </div>
-            <button type="submit">{loading ? "Updating" : "Update secret"}</button>
+            <button type="submit">{loading ? "Updating" : "Update wish"}</button>
           </form>
 
           <div style={{display: "flex", flexDirection: "column"}}>
-          <p style={{marginBottom: "0"}}>Owner Address: </p>
-          <p>{owner}</p>
+          <p style={{marginBottom: "0"}}>Wisher Address: </p>
+          <p>{wisher}</p>
           </div>
-          <button onClick={showOwner}>Show Owner</button>
+          <button onClick={checkWisher}>Show wisher</button>
 
         </>
       ) : (

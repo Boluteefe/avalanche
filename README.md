@@ -1,4 +1,4 @@
-# Avax Frontend
+# Avax Frontend (WishBank)
 
 ## Contract Overview
 

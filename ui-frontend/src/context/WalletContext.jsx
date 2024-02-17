@@ -10,7 +10,7 @@ const WalletContext = createContext({
   contract: undefined,
 });
 
-const contractAddr = "0xF90CaA0E7aB9138EB85BfFC12139d029aFae0F93";
+const contractAddr = "0xe643d74B96047765c9E67B43aFBb9Df8758c0b63";
 
 export const WalletProvider = ({ children }) => {
   const [account, setAccount] = useState("");
@@ -23,6 +23,8 @@ export const WalletProvider = ({ children }) => {
       setEth(provider);
     }
   };
+
+  
 
   const connectWallet = async () => {
     if (eth) {

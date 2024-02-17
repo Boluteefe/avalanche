@@ -4,18 +4,20 @@ pragma solidity ^0.8.17;
 
 contract WishBank {
     string public wish;
-    address public owner;
+    address public wisher;
 
-    constructor() {
-        owner = msg.sender;
+    constructor(string memory _wish) {
+        wish = _wish;
+        wisher = msg.sender;
     }
 
      function checkWisher() public view returns (address) {
-        return owner;
+        return wisher;
     }
 
     function makeNewWish(string memory _newWish) public {
         wish = _newWish;
+        wisher = msg.sender;
     }
 
     function showWish() public view returns (string memory) {
