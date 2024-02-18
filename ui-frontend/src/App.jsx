@@ -43,7 +43,7 @@ function App() {
 
           <form onSubmit={handleSubmit} style={{display: "flex", flexDirection: "column", gap: "20px"}}>
             <div style={{display: "flex", gap: "10px", justifyContent: "center"}}>
-              <label htmlFor="wish">Enter wish:</label>
+              <label htmlFor="wish">Make a wish:</label>
               <input
                 type="text"
                 name="wish"

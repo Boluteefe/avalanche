@@ -1,4 +1,4 @@
-import { Contract, JsonRpcSigner } from "ethers";
+import { Contract } from "ethers";
 import { BrowserProvider } from "ethers";
 import { createContext, useEffect, useState } from "react";
 import abi from "../Assessment.json";
@@ -24,32 +24,43 @@ export const WalletProvider = ({ children }) => {
     }
   };
 
-  
-
   const connectWallet = async () => {
-    if (eth) {
-      const signer = await eth.getSigner();
-
-      const network = await eth.getNetwork();
-
-      if (network.chainId !== Network.from("sepolia").chainId) {
-        await eth.send("wallet_addEthereumChain", [
-          {
-            chainId: "0xaa36a7",
-          },
-        ]);
+    if (window.ethereum) {
+      try {
+        // Request the user's accounts
+        const accounts = await window.ethereum.request({ method: 'eth_requestAccounts' });
+  
+        // Assuming you want the first account from the list
+        const selectedAddress = accounts[0];
+  
+        const network = await eth.getNetwork();
+  
+        if (network.chainId !== Network.from("sepolia").chainId) {
+          await window.ethereum.send("wallet_addEthereumChain", [
+            {
+              chainId: "0xaa36a7",
+              rpcUrls: ["https://ethereum-sepolia.publicnode.com"],
+              chainName: "Sepolia",
+              nativeCurrency: {
+                name: "SepoliaETH",
+                symbol: "ETH",
+                decimals: 18,
+              },
+            },
+          ]);
+        }
+  
+        setAccount(selectedAddress);
+  
+        // Note: MetaMask doesn't provide a direct equivalent to getSigner()
+        // You may need to adapt your contract interactions accordingly
+        getContract();
+      } catch (error) {
+        console.error(error);
       }
-
-      setAccount(signer.address);
-
-      getContract(signer);
     }
   };
-
-  const getContract = async (signer) => {
-    const contract = new Contract(contractAddr, abi, signer);
-    setContract(contract);
-  };
+  
 
   useEffect(() => {
     initWallet();
