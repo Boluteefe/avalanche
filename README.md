@@ -6,7 +6,7 @@ The DEGEN contract is an ERC20 token with additional functionality. Apart from t
 
 ### **0xB128885c923C8e77196E8416585c9ea97a63503F**
 
-### **[Contract address on Snowtrace](https://testnet.snowtrace.io/address/0x)**
+### **[Contract address on Snowtrace](https://testnet.snowtrace.io/address/0xB128885c923C8e77196E8416585c9ea97a63503F)**
 
 ## Contract Structure
 
