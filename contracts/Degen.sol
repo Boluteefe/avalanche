@@ -58,9 +58,4 @@ contract Degen is ERC20 {
         Item storage _item = items[itemId];
         return (_item.owner != address(this));
     }
-
-    function getItemDetails(uint itemId) public view returns (Item memory) {
-        require(itemId < nextItemId, "Item does not exist");
-        return items[itemId];
-    }
 }
