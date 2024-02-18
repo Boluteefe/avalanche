@@ -60,8 +60,14 @@ export const WalletProvider = ({ children }) => {
       }
     }
   };
-  
 
+  const getContract = () => {
+    if (eth && account) {
+      const contract = new Contract(contractAddr, abi, eth);
+      setContract(contract);
+    }
+  };
+  
   useEffect(() => {
     initWallet();
   }, []);
