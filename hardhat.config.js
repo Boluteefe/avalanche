@@ -41,6 +41,8 @@ module.exports = {
     },
   },
   etherscan: {
-    apiKey: [process.env.APIKEY],
+    apiKey: {
+      avalancheFujiTestnet: [process.env.APIKEY]
+    }
   },
 };

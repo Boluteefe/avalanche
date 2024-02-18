@@ -7,7 +7,7 @@ async function main() {
   await degen.waitForDeployment();
 
   console.log(`degen token deployed to ${degen.target}`);
-  // 0x
+  // 0xB128885c923C8e77196E8416585c9ea97a63503F
 }
 
 // Hardhat recommends this pattern to be able to use async/await everywhere
