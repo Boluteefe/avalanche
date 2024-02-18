@@ -39,8 +39,10 @@ function App() {
     <>
       {account ? (
         <>
-          <p>Current wish: {wish}</p>
-
+        <div>
+          <h4>Latest wish: </h4>
+          <p>{wish}</p>
+      </div>
           <form onSubmit={handleSubmit} style={{display: "flex", flexDirection: "column", gap: "20px"}}>
             <div style={{display: "flex", gap: "10px", justifyContent: "center"}}>
               <label htmlFor="wish">Make a wish:</label>
@@ -48,7 +50,7 @@ function App() {
                 type="text"
                 name="wish"
                 id="wish"
-                style={{padding: "5px"}}
+                style={{padding: "5px", backgroundColor: "transparent", borderRadius: "6px", outline: "none", borderColor: "white"}}
               />
             </div>
             <button type="submit">{loading ? "Updating" : "Update wish"}</button>
