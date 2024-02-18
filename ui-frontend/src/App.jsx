@@ -30,6 +30,7 @@ function App() {
   };
 
   const checkWisher = async () => {
+    console.log(contract);
     const wisherAddress = await contract?.checkWisher();
     console.log(wisherAddress);
     setWisher(wisherAddress);
@@ -41,7 +42,7 @@ function App() {
         <>
         <div>
           <h4>Latest wish: </h4>
-          <p>{wish}</p>
+          <p style={{color: "yellow"}}>{wish}</p>
       </div>
           <form onSubmit={handleSubmit} style={{display: "flex", flexDirection: "column", gap: "20px"}}>
             <div style={{display: "flex", gap: "10px", justifyContent: "center"}}>
